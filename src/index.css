@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+:root {
+  --sky-top: #5FB8FF;
+  --sky-bottom: #DDF2FF;
+  --primary-purple: #7C5CFF;
+  --light-purple: #CDB8FF;
+  --dark-purple: #2B2A5E;
+  --cyan: #2DE2E6;
+  --orange: #FF9F2E;
+  --magenta: #E052E8;
+  --blue: #3B82F6;
+  --lime: #6EDB6A;
+  --yellow: #FFD43B;
+  --floor: #EDE6FA;
+  --stone: #C9D3EE;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Allow smooth vertical touch scrolling inside scrollable menus/modals while keeping 3D canvas touch-locked */
+.overflow-y-auto,
+.ehm-scroll-y {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Child-friendly (<1 Hz) smooth sonar wave ripple for Stage 1~5 offscreen direction hint */
+@keyframes ehmHintWaveExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    border-width: var(--ring-border-start, 3.2px);
+    border-color: var(--ring-color-primary, #2DE2E6);
+    box-shadow: 0 0 8px var(--ring-color-primary, #2DE2E6);
+    opacity: 0.88;
+  }
+  45% {
+    border-width: var(--ring-border-mid, 4.6px);
+    border-color: var(--ring-color-secondary, #FFD43B);
+    box-shadow: 0 0 18px var(--ring-color-secondary, #FFD43B);
+    opacity: 0.62;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(var(--ring-scale-end, 2.55));
+    border-width: var(--ring-border-end, 1.2px);
+    border-color: var(--ring-color-primary, #2DE2E6);
+    box-shadow: 0 0 4px var(--ring-color-primary, #2DE2E6);
+    opacity: 0;
+  }
+}
+
+@keyframes ehmHintCoreBreath {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.14);
+    opacity: 0.96;
+  }
+}
+
+@keyframes ehmHintArrowNudge {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.ehm-hint-wave-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 9999px;
+  border-style: solid;
+  pointer-events: none;
+  will-change: transform, opacity, border-width, border-color, box-shadow;
+  transition:
+    border-color 0.45s ease-in-out,
+    border-width 0.45s ease-in-out,
+    box-shadow 0.45s ease-in-out,
+    width 0.35s ease-out,
+    height 0.35s ease-out;
+  animation-name: ehmHintWaveExpand;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-iteration-count: infinite;
+}
+
+.ehm-hint-core-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 9999px;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ehmHintCoreBreath 1.9s ease-in-out infinite;
+}
+
+.ehm-hint-arrow-nudge {
+  will-change: transform;
+  animation: ehmHintArrowNudge 1.6s ease-in-out infinite;
+}
+
+/* Smooth (<1 Hz) child-friendly Target Lock-On Visual Effects for High Difficulty & G-Mission Targets */
+@keyframes ehmTargetLockOnPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.88);
+    opacity: 0.85;
+  }
+  55% {
+    transform: translate(-50%, -50%) scale(1.22);
+    opacity: 0.48;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.42);
+    opacity: 0;
+  }
+}
+
+@keyframes ehmTargetReticleSpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes ehmTargetBadgeFloat {
+  0%,
+  100% {
+    transform: translate(-50%, 0px);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+.ehm-target-lockon-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 9999px;
+  border-style: solid;
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ehmTargetLockOnPulse 1.85s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.ehm-target-reticle-spin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  will-change: transform;
+  animation: ehmTargetReticleSpin 9s linear infinite;
+}
+
+.ehm-target-badge-float {
+  position: absolute;
+  left: 50%;
+  pointer-events: none;
+  will-change: transform;
+  animation: ehmTargetBadgeFloat 1.75s ease-in-out infinite;
+}
+
+
+/* Tactical HUD panels: chamfered corners, thin light border, accent edge bar */
+.ehm-hud-panel {
+  border-radius: 3px !important;
+  border-width: 1px !important;
+  border-color: rgba(236, 232, 225, 0.22) !important;
+  background: linear-gradient(135deg, rgba(15, 25, 35, 0.94), rgba(15, 25, 35, 0.74)) !important;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  box-shadow: inset 3px 0 0 #2DE2E6, 0 6px 18px rgba(0, 0, 0, 0.28) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}

@@ -1,0 +1,6 @@
+{
+  "name": "EYE HAND MISSION",
+  "description": "아동의 눈-손 협응, 시각 추적, 반응속도, 조준 정확도를 훈련하는 1인칭 3D 파스텔 SF 훈련 아레나 게임",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
