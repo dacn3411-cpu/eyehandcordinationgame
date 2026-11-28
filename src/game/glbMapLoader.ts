@@ -14,15 +14,14 @@ import { SpawnAnchor } from './worldBuilder';
  * Meshopt-compressed copy of the same map (16.6 MB instead of 51 MB), loaded first. If it can't be loaded
  * or decoded, the original file below is used.
  */
-export const PROJECT_C_GLB_COMPRESSED_URL =
-  'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/project%20C123.meshopt.glb';
+const MAP_BASE =
+  ((import.meta as unknown as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/') + 'assets/models/map/';
+export const PROJECT_C_GLB_COMPRESSED_URL = MAP_BASE + 'project-c123.meshopt.glb';
 /** Approximate download sizes, for the progress bar when the server sends no length. */
 const PROJECT_C_GLB_COMPRESSED_BYTES = 16556024;
 const PROJECT_C_GLB_ORIGINAL_BYTES = 51749776;
-export const PROJECT_C_GLB_PRIMARY_URL =
-  'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/project%20C123.glb';
-export const PROJECT_C_GLB_FALLBACK_URL =
-  'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/Project%20C123.glb';
+export const PROJECT_C_GLB_PRIMARY_URL = MAP_BASE + 'project-c123.glb';
+export const PROJECT_C_GLB_FALLBACK_URL = MAP_BASE + 'project-c123.glb';
 export const DRACO_DECODER_CDN_URL =
   'https://www.gstatic.com/draco/versioned/decoders/1.5.6/';
 

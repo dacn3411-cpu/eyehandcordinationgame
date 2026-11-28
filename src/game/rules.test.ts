@@ -1269,13 +1269,8 @@ test('Project C .glb loader auto-scales map (60~100 core width), aligns dense ce
 
   // Near-white material (with or without texture) must be corrected to emissive=0x000000, color=#d4d0c7, roughness>=0.85, envMapIntensity=0.35, side=DoubleSide
   const { PROJECT_C_GLB_PRIMARY_URL, PROJECT_C_GLB_COMPRESSED_URL } = await import('./glbMapLoader');
-  // the compressed copy of the same map is tried first, from the same asset repo
-  assert.ok(PROJECT_C_GLB_COMPRESSED_URL.startsWith('https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/'));
-  assert.ok(PROJECT_C_GLB_COMPRESSED_URL.endsWith('.meshopt.glb'));
-  assert.equal(
-    PROJECT_C_GLB_PRIMARY_URL,
-    'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/project%20C123.glb',
-  );
+  assert.ok(PROJECT_C_GLB_COMPRESSED_URL.endsWith('assets/models/map/project-c123.meshopt.glb'));
+  assert.ok(PROJECT_C_GLB_PRIMARY_URL.endsWith('assets/models/map/project-c123.glb'));
   const correctedMat = lowRoof.material as THREE.MeshStandardMaterial;
   assert.equal(correctedMat.side, THREE.DoubleSide);
   assert.equal(correctedMat.emissive.getHex(), 0x000000);

@@ -67,7 +67,6 @@ export const WEAPON_SPECS: Record<WeaponId, WeaponSpec> = {
     stats: { power: 50, fireRate: 64, control: 90 },
     glb: {
       file: 'pistol_opt.glb',
-      fallbackUrl: 'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/pistol_opt.glb',
       targetLength: 0.30,
       rotY: 0,
       posOffset: [-0.02, 0.01, 0.08],
@@ -93,7 +92,6 @@ export const WEAPON_SPECS: Record<WeaponId, WeaponSpec> = {
     stats: { power: 80, fireRate: 78, control: 68 },
     glb: {
       file: 'ar47_opt.glb',
-      fallbackUrl: 'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/ar47_opt.glb',
       targetLength: 0.75,
       rotY: 0,
       posOffset: [0, 0, 0],
@@ -119,7 +117,6 @@ export const WEAPON_SPECS: Record<WeaponId, WeaponSpec> = {
     stats: { power: 100, fireRate: 22, control: 60 },
     glb: {
       file: 'sniper_opt.glb',
-      fallbackUrl: 'https://raw.githubusercontent.com/dacn3411-cpu/dddd/main/sniper_opt.glb',
       targetLength: 1.20,
       rotY: 0,
       posOffset: [0.02, -0.02, -0.14],
